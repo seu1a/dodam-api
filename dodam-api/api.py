@@ -4,7 +4,8 @@ from apis import (
     auth,
     member,
     nightstudy,
-    bus
+    bus,
+    point
 )
 
 class Api() :
@@ -14,33 +15,48 @@ class Api() :
 
     def login(self, id, pw) -> None:
         """
-        도담도담에 로그인하여 액세스, 리프레시 토큰을 저장합니다
+        Login to DodamDodam and Save Tokens to Instance
         
-        :param id: 도담도담 ID
-        :param pw: 도담도담 PW
+        :param id: DodamDodam ID
+        :param pw: DodamDodam PW
         """
         return auth.login(self.client, self.utils, id, pw)
 
     def refresh_token(self) :
         """
-        저장된 리프레시 토큰을 사용해 액세스 토큰을 재발급합니다
+        Reissue Access Token Using Refresh Token
         """
         return auth.reissue(self.client, self.utils)
     
     def get_my_info(self) :
         """
-        내 유저 정보를 가져옵니다
+        Returns My Info
         """
         return member.getMy(self.client, self.utils)
     
     def get_my_nightstudy(self):
         """
-        내 심자 정보를 가져옵니다
+        Returns List of My NightStudy
         """
         return nightstudy.getMy(self.client, self.utils)
     
     def get_valid_bus(self):
         """
-        유효하는 버스를 가져옵니다
+        Returns List of Valid Bus
         """
         return bus.getValid(self.client, self.utils)
+    
+    def get_my_dormitory_point(self):
+        """
+        Returns My Dormitory Point
+        """
+        return point.getMyScoreByDormitory(self.client, self.utils)
+    
+    def get_my_school_point(self):
+        """
+        Returns My School Point
+        """
+        return point.getMyScoreBySchool(self.client, self.utils)
+    
+api = Api()
+api.login("donsula75", "donsula0703")
