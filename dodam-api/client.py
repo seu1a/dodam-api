@@ -15,7 +15,7 @@ class Client() :
                     url,
                     headers=kwargs.get("header", {}),
                     json=kwargs.get("body", {}),
-                    params=kwargs.get("param", {})
+                    params=kwargs.get("param", {}),
                 )
                 
                 if (res.status_code == 401) :
@@ -26,4 +26,6 @@ class Client() :
             except (TokenExpiredException) :
                 auth.reissue(self, self.utils)
                 continue
-            
+
+            except (KeyError) :
+                return res.json()
