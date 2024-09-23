@@ -57,6 +57,11 @@ class Api() :
         Returns My School Point
         """
         return point.getMyScoreBySchool(self.client, self.utils)
+
+    def apply_bus(self, id) :
+        """
+        Apply to Certain Bus
+        :param id: Bus ID
+        """
+        return bus.apply(self.client, self.utils, id)
     
-api = Api()
-api.login("donsula75", "donsula0703")
