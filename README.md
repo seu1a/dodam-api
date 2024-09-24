@@ -6,7 +6,7 @@
 ### Example
 
 ```python
-from dodam_api.api import Api
+from dodam_api import Api
 
 api = Api()
 api.login("id", "pw")
