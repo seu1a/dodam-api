@@ -5,7 +5,8 @@ from apis import (
     member,
     nightstudy,
     bus,
-    point
+    point,
+    banner
 )
 
 class Api() :
@@ -13,7 +14,7 @@ class Api() :
         self.client = Client()
         self.utils = Utils()
 
-    def login(self, id, pw) -> None:
+    def login(self, id, pw):
         """
         Login to DodamDodam and Save Tokens to Instance
         
@@ -64,4 +65,16 @@ class Api() :
         :param id: Bus ID
         """
         return bus.apply(self.client, self.utils, id)
+    
+    def get_all_banner(self) :
+        """
+        Returns All of Banner
+        """
+        return banner.getAllOrderByIdDesc(self.client, self.utils)
+    
+    def get_activate_banner(self) :
+        """
+        Returns Banner That Is Activated
+        """
+        return banner.getActivates(self.client, self.utils)
     
