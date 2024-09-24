@@ -32,10 +32,14 @@ class Client() :
     
     def reissue(self) :
         try :
-            auth.reissue(self, self.utils)
+            res = auth.reissue(self, self.utils)
+            
+            if (res.status_code == 410)  :
+                self.relogin()
+            
         except (TokenExpiredException) :
             self.relogin()
     
     def relogin(self) :
-        auth.login(self, self.utils)
+        auth.login(self, self.utils, self.username, self.password)
         
