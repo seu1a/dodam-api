@@ -35,7 +35,7 @@ class Client() :
             res = auth.reissue(self, self.utils)
             
             if (res.status_code == 410)  :
-                self.relogin()
+                raise TokenExpiredException
             
         except (TokenExpiredException) :
             self.relogin()
