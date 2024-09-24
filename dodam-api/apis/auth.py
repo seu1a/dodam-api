@@ -6,6 +6,9 @@ def login(client, utils, username, password) :
         }
     )
 
+    client.username = username
+    client.password = password
+    
     client.accessToken = utils.TOKEN_TYPE + data["accessToken"]
     client.refreshToken = utils.TOKEN_TYPE + data["refreshToken"]
 
