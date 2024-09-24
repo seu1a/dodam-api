@@ -24,8 +24,18 @@ class Client() :
                 return res.json()["data"]
 
             except (TokenExpiredException) :
-                auth.reissue(self, self.utils)
+                self.reissue()
                 continue
 
             except (KeyError) :
                 return res.json()
+    
+    def reissue(self) :
+        try :
+            auth.reissue(self, self.utils)
+        except (TokenExpiredException) :
+            self.relogin()
+    
+    def relogin(self) :
+        auth.login(self, self.utils)
+        
